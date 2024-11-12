@@ -5,6 +5,7 @@
 //  Created by Joey Chung on 11/12/24.
 //
 
+import SDWebImageSwiftUI
 import SwiftUI
 
 struct HomeView: View {
@@ -47,17 +48,13 @@ struct RecipeCellView: View {
     var body: some View {
         HStack {
             if let thumbnailUrl = recipe.smallPhotoUrl {
-                AsyncImage(url: URL(string: thumbnailUrl),
-                           content: { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 75, height: 75)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                },
-                           placeholder: {
-                    Text("Loading...")
-                })
+                WebImage(url: URL(string: thumbnailUrl))
+                    .resizable()
+                    .indicator(.activity)
+                    .transition(.fade(duration: 0.5))
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 75, height: 75)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 VStack(alignment: .leading) {
                     Text(recipe.cuisine)

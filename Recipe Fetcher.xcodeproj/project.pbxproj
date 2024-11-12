@@ -11,6 +11,7 @@
 		91B248512CE3EA85002915AF /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248502CE3EA85002915AF /* RecipeService.swift */; };
 		91B248532CE3EE31002915AF /* RecipeServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248522CE3EE31002915AF /* RecipeServiceError.swift */; };
 		91B248552CE3F050002915AF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248542CE3F050002915AF /* HomeViewModel.swift */; };
+		91B248582CE40465002915AF /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 91B248572CE40465002915AF /* SDWebImageSwiftUI */; };
 		91DF498B2CE3CD2E004C328C /* Recipe_FetcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF498A2CE3CD2E004C328C /* Recipe_FetcherApp.swift */; };
 		91DF498D2CE3CD2E004C328C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF498C2CE3CD2E004C328C /* HomeView.swift */; };
 		91DF498F2CE3CD34004C328C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91DF498E2CE3CD34004C328C /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B248582CE40465002915AF /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +189,9 @@
 			dependencies = (
 			);
 			name = "Recipe Fetcher";
+			packageProductDependencies = (
+				91B248572CE40465002915AF /* SDWebImageSwiftUI */,
+			);
 			productName = "Recipe Fetcher";
 			productReference = 91DF49872CE3CD2E004C328C /* Recipe Fetcher.app */;
 			productType = "com.apple.product-type.application";
@@ -259,6 +264,9 @@
 				Base,
 			);
 			mainGroup = 91DF497E2CE3CD2E004C328C;
+			packageReferences = (
+				91B248562CE40465002915AF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 91DF49882CE3CD2E004C328C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -636,6 +644,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91B248562CE40465002915AF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91B248572CE40465002915AF /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91B248562CE40465002915AF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91DF497F2CE3CD2E004C328C /* Project object */;
 }
