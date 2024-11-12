@@ -57,20 +57,26 @@ struct RecipeCellView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 75, height: 75)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                VStack(alignment: .leading) {
-                    Text("\(recipe.cuisine.flag) \(recipe.cuisine.rawValue)")
-                        .font(.body)
-                        .lineLimit(1)
-                    
-                    Text(recipe.name)
-                        .font(.title3)
-                        .bold()
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
+            
+            VStack(alignment: .leading) {
+                Text("\(recipe.cuisine.flag) \(recipe.cuisine.rawValue)")
+                    .font(.body)
+                    .lineLimit(1)
+                
+                Text(recipe.name)
+                    .font(.title3)
+                    .bold()
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Image(systemName: "chevron.right")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 10)
+                .foregroundStyle(Color.white)
         }
         .padding()
         .background(Color.backgroundSecondary)

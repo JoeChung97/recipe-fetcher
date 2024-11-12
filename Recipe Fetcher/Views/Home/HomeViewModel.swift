@@ -17,6 +17,8 @@ class HomeViewModel: ObservableObject {
     @Published var shouldShowError = false
     @Published var selectedCuisine: Cuisine?
     
+    /// Filters available recipes based off of the
+    /// selected cuisine
     var filteredRecipes: [Recipe] {
         if let selectedCuisine {
             return recipes.filter { $0.cuisine == selectedCuisine }
