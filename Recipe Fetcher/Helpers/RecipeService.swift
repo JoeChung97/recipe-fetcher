@@ -14,15 +14,33 @@ protocol RecipeServiceProtocol {
 public class RecipeService: RecipeServiceProtocol {
     private let decoder = JSONDecoder()
     private let session: URLSession
-    private let recipesEndpoint = "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
+    private let endpoint: Endpoint
     
-    init(session: URLSession = .shared) {
+    enum Endpoint {
+        case allRecipes
+        case malformed
+        case empty
+        
+        var urlString: String {
+            switch self {
+            case .allRecipes:
+                "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json"
+            case .malformed:
+                "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-malformed.json"
+            case .empty:
+                "https://d3jbb8n5wk0qxi.cloudfront.net/recipes-empty.json"
+            }
+        }
+    }
+    
+    init(session: URLSession = .shared, endpoint: Endpoint = .allRecipes) {
         self.session = session
+        self.endpoint = endpoint
     }
     
     func fetchRecipes() async -> Result<[Recipe], Error> {
-        guard let recipesUrl = URL(string: recipesEndpoint) else {
-            return .failure(RecipeServiceError.invalidUrl(recipesEndpoint))
+        guard let recipesUrl = URL(string: endpoint.urlString) else {
+            return .failure(RecipeServiceError.invalidUrl(endpoint.urlString))
         }
         
         let request = URLRequest(url: recipesUrl)

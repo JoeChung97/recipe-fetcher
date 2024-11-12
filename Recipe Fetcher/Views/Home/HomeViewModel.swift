@@ -10,10 +10,11 @@ import Foundation
 @MainActor
 class HomeViewModel: ObservableObject {
     private let service: RecipeServiceProtocol
+    var error: Error?
     
     @Published var isLoading = false
     @Published var recipes: [Recipe] = []
-    @Published var error: Error?
+    @Published var shouldShowError = false
     
     init(service: RecipeServiceProtocol) {
         self.service = service
@@ -30,6 +31,7 @@ class HomeViewModel: ObservableObject {
             self.recipes = recipes
         case .failure(let error):
             self.error = error
+            self.shouldShowError = true
         }
     }
 }

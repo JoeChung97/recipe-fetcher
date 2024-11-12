@@ -21,7 +21,13 @@ struct HomeView: View {
         .overlay {
             if viewModel.isLoading {
                 Text("Loading...")
+            }else if viewModel.recipes.isEmpty {
+                Text("It looks like there weren't any recipes to fetch")
             }
+        }
+        .alert(isPresented: $viewModel.shouldShowError) {
+            Alert(title: Text("An Error Occurred"),
+                  message: Text(viewModel.error?.localizedDescription ?? "We're sorry, it looks like something went wrong. Try loading the recipes again."))
         }
         .task {
             await viewModel.fetchRecipes()
