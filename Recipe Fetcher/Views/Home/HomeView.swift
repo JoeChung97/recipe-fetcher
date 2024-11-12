@@ -18,6 +18,11 @@ struct HomeView: View {
                 }
             }
         }
+        .refreshable {
+            Task {
+                await viewModel.fetchRecipes()
+            }
+        }
         .overlay {
             if viewModel.isLoading {
                 Text("Loading...")
