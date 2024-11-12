@@ -10,7 +10,7 @@ import Foundation
 struct Recipe: Decodable {
     let id: String
     let name: String
-    let cuisine: String
+    let cuisine: Cuisine
     let smallPhotoUrl: String?
     let largePhotoUrl: String?
     let sourceUrl: String?
@@ -24,6 +24,57 @@ struct Recipe: Decodable {
         case largePhotoUrl = "photo_url_large"
         case sourceUrl = "source_url"
         case youtubeUrl = "youtube_url"
+    }
+}
+
+// MARK: - Cuisine
+
+/// Having an Enum for cuisines makes filtering less
+/// error prone and allows a flag emoji to be associated
+/// with each cuisine. It would probably be better to be able
+/// to fetch a list of cuisines from the API, but since that's not
+/// possible for this exercise, this works as well.
+enum Cuisine: String, Decodable, CaseIterable {
+    case malaysian = "Malaysian"
+    case british = "British"
+    case american = "American"
+    case canadian = "Canadian"
+    case italian = "Italian"
+    case tunisian = "Tunisian"
+    case french = "French"
+    case greek = "Greek"
+    case polish = "Polish"
+    case portuguese = "Portuguese"
+    case russian = "Russian"
+    case croatian = "Croatian"
+    
+    var flag: String {
+        switch self {
+        case .malaysian:
+            "🇲🇾"
+        case .british:
+            "🇬🇧"
+        case .american:
+            "🇺🇸"
+        case .canadian:
+            "🇨🇦"
+        case .italian:
+            "🇮🇹"
+        case .tunisian:
+            "🇹🇳"
+        case .french:
+            "🇫🇷"
+        case .greek:
+            "🇬🇷"
+        case .polish:
+            "🇵🇱"
+        case .portuguese:
+            "🇵🇹"
+        case .russian:
+            "🇷🇺"
+        case .croatian:
+            "🇭🇷"
+        }
     }
 }
 

@@ -15,6 +15,15 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var recipes: [Recipe] = []
     @Published var shouldShowError = false
+    @Published var selectedCuisine: Cuisine?
+    
+    var filteredRecipes: [Recipe] {
+        if let selectedCuisine {
+            return recipes.filter { $0.cuisine == selectedCuisine }
+        }else{
+            return recipes
+        }
+    }
     
     init(service: RecipeServiceProtocol) {
         self.service = service

@@ -14,11 +14,13 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(viewModel.recipes, id: \.id) { recipe in
+                CuisineFilterView(selectedCuisine: $viewModel.selectedCuisine)
+                
+                ForEach(viewModel.filteredRecipes, id: \.id) { recipe in
                     RecipeCellView(recipe: recipe)
+                        .padding(.horizontal)
                 }
             }
-            .padding()
         }
         .refreshable {
             Task {
@@ -57,7 +59,7 @@ struct RecipeCellView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 VStack(alignment: .leading) {
-                    Text(recipe.cuisine)
+                    Text("\(recipe.cuisine.flag) \(recipe.cuisine.rawValue)")
                         .font(.body)
                         .lineLimit(1)
                     
