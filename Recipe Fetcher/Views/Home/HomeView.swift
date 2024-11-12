@@ -14,9 +14,10 @@ struct HomeView: View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.recipes, id: \.id) { recipe in
-                    Text(recipe.name)
+                    RecipeCellView(recipe: recipe)
                 }
             }
+            .padding()
         }
         .refreshable {
             Task {
@@ -37,6 +38,44 @@ struct HomeView: View {
         .task {
             await viewModel.fetchRecipes()
         }
+    }
+}
+
+struct RecipeCellView: View {
+    let recipe: Recipe
+    
+    var body: some View {
+        HStack {
+            if let thumbnailUrl = recipe.smallPhotoUrl {
+                AsyncImage(url: URL(string: thumbnailUrl),
+                           content: { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 75, height: 75)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                },
+                           placeholder: {
+                    Text("Loading...")
+                })
+                
+                VStack(alignment: .leading) {
+                    Text(recipe.cuisine)
+                        .font(.body)
+                        .lineLimit(1)
+                    
+                    Text(recipe.name)
+                        .font(.title3)
+                        .bold()
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .padding()
+        .background(Color.backgroundSecondary)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
