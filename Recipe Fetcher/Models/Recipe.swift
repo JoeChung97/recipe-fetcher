@@ -35,6 +35,7 @@ struct Recipe: Decodable {
 /// to fetch a list of cuisines from the API, but since that's not
 /// possible for this exercise, this works as well.
 enum Cuisine: String, Decodable, CaseIterable {
+    case all = "All"
     case malaysian = "Malaysian"
     case british = "British"
     case american = "American"
@@ -48,7 +49,7 @@ enum Cuisine: String, Decodable, CaseIterable {
     case russian = "Russian"
     case croatian = "Croatian"
     
-    var flag: String {
+    var icon: String {
         switch self {
         case .malaysian:
             "🇲🇾"
@@ -74,6 +75,8 @@ enum Cuisine: String, Decodable, CaseIterable {
             "🇷🇺"
         case .croatian:
             "🇭🇷"
+        case .all:
+            "🌎"
         }
     }
 }

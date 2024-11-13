@@ -9,13 +9,13 @@ import XCTest
 @testable import Recipe_Fetcher
 
 final class HomeViewModelTests: XCTestCase {
-    var viewModel: HomeViewModel!
+    var viewModel: RecipesViewModel!
     var mockService: MockRecipeService!
     
     @MainActor
     override func setUp() async throws {
         mockService = MockRecipeService()
-        viewModel = HomeViewModel(service: mockService)
+        viewModel = RecipesViewModel(service: mockService)
     }
 
     override func tearDown() {
@@ -125,7 +125,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     @MainActor
-    func testRecipesWithNoFilter() async throws {
+    func testRecipesWithAllFilter() async throws {
         viewModel.recipes = [
             Recipe(id: "1",
                    name: "Burger",
@@ -149,7 +149,7 @@ final class HomeViewModelTests: XCTestCase {
                    sourceUrl: nil,
                    youtubeUrl: nil)
         ]
-        viewModel.selectedCuisine = nil
+        viewModel.selectedCuisine = .all
         
         XCTAssertEqual(viewModel.filteredRecipes.count, 3)
         XCTAssertEqual(viewModel.filteredRecipes.first?.id, "1")

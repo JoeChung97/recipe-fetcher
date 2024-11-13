@@ -8,22 +8,29 @@
 import Foundation
 
 @MainActor
-class HomeViewModel: ObservableObject {
+class RecipesViewModel: ObservableObject {
     private let service: RecipeServiceProtocol
-    var error: Error?
     
     @Published var isLoading = false
     @Published var recipes: [Recipe] = []
     @Published var shouldShowError = false
-    @Published var selectedCuisine: Cuisine?
+    @Published var selectedCuisine: Cuisine = .all
+    @Published var searchText: String = ""
     
     /// Filters available recipes based off of the
-    /// selected cuisine
+    /// selected cuisine & searchText
     var filteredRecipes: [Recipe] {
-        if let selectedCuisine {
-            return recipes.filter { $0.cuisine == selectedCuisine }
+        var filteredRecipes = recipes
+        if searchText.isEmpty == false {
+            filteredRecipes = recipes.filter {
+                $0.name.lowercased().contains(searchText.lowercased()) || $0.cuisine.rawValue.lowercased().contains(searchText.lowercased())
+            }
+        }
+        
+        if selectedCuisine == .all {
+            return filteredRecipes
         }else{
-            return recipes
+            return filteredRecipes.filter { $0.cuisine == selectedCuisine }
         }
     }
     
@@ -40,8 +47,7 @@ class HomeViewModel: ObservableObject {
         switch result {
         case .success(let recipes):
             self.recipes = recipes
-        case .failure(let error):
-            self.error = error
+        case .failure(_):
             self.shouldShowError = true
         }
     }
