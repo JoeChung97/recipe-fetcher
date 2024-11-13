@@ -18,7 +18,7 @@ class RecipesViewModel: ObservableObject {
     @Published var searchText: String = ""
     
     /// Filters available recipes based off of the
-    /// selected cuisine & searchText
+    /// selected cuisine & case-insensitive searchText
     var filteredRecipes: [Recipe] {
         var filteredRecipes = recipes
         if searchText.isEmpty == false {

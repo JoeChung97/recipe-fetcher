@@ -94,7 +94,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     @MainActor
-    func testRecipesWithFilter() async throws {
+    func testRecipesWithFilter() throws {
         viewModel.recipes = [
             Recipe(id: "1",
                    name: "Burger",
@@ -125,7 +125,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     @MainActor
-    func testRecipesWithAllFilter() async throws {
+    func testRecipesWithAllFilter() throws {
         viewModel.recipes = [
             Recipe(id: "1",
                    name: "Burger",
@@ -156,7 +156,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     @MainActor
-    func testRecipesWithInvalidFilter() async throws {
+    func testRecipesWithInvalidFilter() throws {
         viewModel.recipes = [
             Recipe(id: "1",
                    name: "Burger",
@@ -184,5 +184,199 @@ final class HomeViewModelTests: XCTestCase {
         
         XCTAssertEqual(viewModel.filteredRecipes.isEmpty, true)
         XCTAssertEqual(viewModel.filteredRecipes.first?.id, nil)
+    }
+    
+    @MainActor
+    func testRecipesWithNameSearch() throws {
+        viewModel.recipes = [
+            Recipe(id: "1",
+                   name: "Burger",
+                   cuisine: .american,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "2",
+                   name: "Pasta",
+                   cuisine: .italian,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "3",
+                   name: "Croissant",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil)
+        ]
+        viewModel.searchText = "Pasta"
+        
+        XCTAssertEqual(viewModel.filteredRecipes.count, 1)
+        XCTAssertEqual(viewModel.filteredRecipes.first?.id, "2")
+    }
+    
+    @MainActor
+    func testRecipesWithCuisineSearch() throws {
+        viewModel.recipes = [
+            Recipe(id: "1",
+                   name: "Burger",
+                   cuisine: .american,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "2",
+                   name: "Pasta",
+                   cuisine: .italian,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "3",
+                   name: "Croissant",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil)
+        ]
+        viewModel.searchText = "french"
+        
+        XCTAssertEqual(viewModel.filteredRecipes.count, 1)
+        XCTAssertEqual(viewModel.filteredRecipes.first?.id, "3")
+    }
+    
+    @MainActor
+    func testRecipesWithInvalidSearch() throws {
+        viewModel.recipes = [
+            Recipe(id: "1",
+                   name: "Burger",
+                   cuisine: .american,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "2",
+                   name: "Pasta",
+                   cuisine: .italian,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "3",
+                   name: "Croissant",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil)
+        ]
+        viewModel.searchText = "testing"
+        
+        XCTAssertEqual(viewModel.filteredRecipes.isEmpty, true)
+        XCTAssertEqual(viewModel.filteredRecipes.first?.id, nil)
+    }
+    
+    @MainActor
+    func testRecipesWithPartialSearch() throws {
+        viewModel.recipes = [
+            Recipe(id: "1",
+                   name: "Burger",
+                   cuisine: .american,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "2",
+                   name: "Pasta",
+                   cuisine: .italian,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "3",
+                   name: "Croissant",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil)
+        ]
+        viewModel.searchText = "Croi"
+        
+        XCTAssertEqual(viewModel.filteredRecipes.count, 1)
+        XCTAssertEqual(viewModel.filteredRecipes.first?.id, "3")
+    }
+    
+    @MainActor
+    func testSearchCaseSensitivity() throws {
+        viewModel.recipes = [
+            Recipe(id: "1",
+                   name: "Burger",
+                   cuisine: .american,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "2",
+                   name: "Pasta",
+                   cuisine: .italian,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "3",
+                   name: "Croissant",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil)
+        ]
+        viewModel.searchText = "BuRGer"
+        
+        XCTAssertEqual(viewModel.filteredRecipes.count, 1)
+        XCTAssertEqual(viewModel.filteredRecipes.first?.id, "1")
+    }
+    
+    @MainActor
+    func testCombineSearchAndFilter() throws {
+        viewModel.recipes = [
+            Recipe(id: "1",
+                   name: "Burger",
+                   cuisine: .american,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "2",
+                   name: "Pasta",
+                   cuisine: .italian,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "3",
+                   name: "Croissant",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil),
+            Recipe(id: "4",
+                   name: "Brie Cheese",
+                   cuisine: .french,
+                   smallPhotoUrl: nil,
+                   largePhotoUrl: nil,
+                   sourceUrl: nil,
+                   youtubeUrl: nil)
+        ]
+        viewModel.searchText = "b"
+        viewModel.selectedCuisine = .french
+        
+        XCTAssertEqual(viewModel.filteredRecipes.count, 1)
+        XCTAssertEqual(viewModel.filteredRecipes.first?.id, "4")
     }
 }
