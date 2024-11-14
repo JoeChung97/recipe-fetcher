@@ -29,9 +29,7 @@ struct CuisineFilterView: View {
             .background(selectedCuisine == cuisine ? Color.darkGreen : Color.backgroundSecondary)
             .clipShape(Capsule())
             .onTapGesture {
-                withAnimation {
-                    selectedCuisine = cuisine
-                }
+                selectedCuisine = cuisine
             }
     }
 }
