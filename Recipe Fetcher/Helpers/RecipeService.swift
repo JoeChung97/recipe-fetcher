@@ -45,9 +45,22 @@ public class RecipeService: RecipeServiceProtocol {
         
         let request = URLRequest(url: recipesUrl)
         do {
-            let (data, _) = try await session.data(for: request)
-            let recipeContainer = try decoder.decode(RecipeContainer.self, from: data)
-            return .success(recipeContainer.recipes)
+            let (data, response) = try await session.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return .failure(RecipeServiceError.invalidResponse)
+            }
+            
+            switch httpResponse.statusCode {
+            case 200...299:
+                do {
+                    let recipeContainer = try decoder.decode(RecipeContainer.self, from: data)
+                    return .success(recipeContainer.recipes)
+                } catch {
+                    return .failure(RecipeServiceError.malformedJson)
+                }
+            default:
+                return .failure(RecipeServiceError.unknownError)
+            }
         } catch {
             return .failure(error)
         }

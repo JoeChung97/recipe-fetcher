@@ -8,7 +8,7 @@
 import XCTest
 @testable import Recipe_Fetcher
 
-final class HomeViewModelTests: XCTestCase {
+final class RecipeViewModelTests: XCTestCase {
     var viewModel: RecipesViewModel!
     var mockService: MockRecipeService!
     

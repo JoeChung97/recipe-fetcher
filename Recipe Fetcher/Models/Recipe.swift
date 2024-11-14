@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe: Decodable {
+struct Recipe: Codable {
     let id: String
     let name: String
     let cuisine: Cuisine
@@ -34,7 +34,7 @@ struct Recipe: Decodable {
 /// with each cuisine. It would probably be better to be able
 /// to fetch a list of cuisines from the API, but since that's not
 /// possible for this exercise, this works as well.
-enum Cuisine: String, Decodable, CaseIterable {
+enum Cuisine: String, Codable, CaseIterable {
     case all = "All"
     case malaysian = "Malaysian"
     case british = "British"
@@ -83,6 +83,6 @@ enum Cuisine: String, Decodable, CaseIterable {
 
 // MARK: - RecipeContainer
 
-struct RecipeContainer: Decodable {
+struct RecipeContainer: Codable {
     let recipes: [Recipe]
 }

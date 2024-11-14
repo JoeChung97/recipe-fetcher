@@ -17,11 +17,13 @@
 		91B248612CE53DEE002915AF /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248602CE53DEE002915AF /* BadgeView.swift */; };
 		91B248652CE55291002915AF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248642CE55291002915AF /* SearchView.swift */; };
 		91B248682CE558CF002915AF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248672CE558CF002915AF /* LoadingView.swift */; };
+		91B2486A2CE563CC002915AF /* RecipeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B248692CE563CC002915AF /* RecipeServiceTests.swift */; };
+		91B2486E2CE5668A002915AF /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B2486B2CE56592002915AF /* MockURLProtocol.swift */; };
 		91DF498B2CE3CD2E004C328C /* Recipe_FetcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF498A2CE3CD2E004C328C /* Recipe_FetcherApp.swift */; };
 		91DF498D2CE3CD2E004C328C /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF498C2CE3CD2E004C328C /* RecipesView.swift */; };
 		91DF498F2CE3CD34004C328C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91DF498E2CE3CD34004C328C /* Assets.xcassets */; };
 		91DF49922CE3CD34004C328C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91DF49912CE3CD34004C328C /* Preview Assets.xcassets */; };
-		91DF499C2CE3CD34004C328C /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF499B2CE3CD34004C328C /* HomeViewModelTests.swift */; };
+		91DF499C2CE3CD34004C328C /* RecipeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF499B2CE3CD34004C328C /* RecipeViewModelTests.swift */; };
 		91DF49A62CE3CD34004C328C /* Recipe_FetcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF49A52CE3CD34004C328C /* Recipe_FetcherUITests.swift */; };
 		91DF49A82CE3CD34004C328C /* Recipe_FetcherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DF49A72CE3CD34004C328C /* Recipe_FetcherUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -53,13 +55,15 @@
 		91B248602CE53DEE002915AF /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		91B248642CE55291002915AF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		91B248672CE558CF002915AF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		91B248692CE563CC002915AF /* RecipeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceTests.swift; sourceTree = "<group>"; };
+		91B2486B2CE56592002915AF /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		91DF49872CE3CD2E004C328C /* Recipe Fetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recipe Fetcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91DF498A2CE3CD2E004C328C /* Recipe_FetcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_FetcherApp.swift; sourceTree = "<group>"; };
 		91DF498C2CE3CD2E004C328C /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		91DF498E2CE3CD34004C328C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91DF49912CE3CD34004C328C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		91DF49972CE3CD34004C328C /* Recipe FetcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Recipe FetcherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		91DF499B2CE3CD34004C328C /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		91DF499B2CE3CD34004C328C /* RecipeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModelTests.swift; sourceTree = "<group>"; };
 		91DF49A12CE3CD34004C328C /* Recipe FetcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Recipe FetcherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91DF49A52CE3CD34004C328C /* Recipe_FetcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_FetcherUITests.swift; sourceTree = "<group>"; };
 		91DF49A72CE3CD34004C328C /* Recipe_FetcherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe_FetcherUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 			children = (
 				91B248502CE3EA85002915AF /* RecipeService.swift */,
 				91B2485C2CE4249A002915AF /* MockRecipeService.swift */,
+				91B2486B2CE56592002915AF /* MockURLProtocol.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -206,7 +211,8 @@
 		91DF499A2CE3CD34004C328C /* Recipe FetcherTests */ = {
 			isa = PBXGroup;
 			children = (
-				91DF499B2CE3CD34004C328C /* HomeViewModelTests.swift */,
+				91DF499B2CE3CD34004C328C /* RecipeViewModelTests.swift */,
+				91B248692CE563CC002915AF /* RecipeServiceTests.swift */,
 			);
 			path = "Recipe FetcherTests";
 			sourceTree = "<group>";
@@ -374,7 +380,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91DF499C2CE3CD34004C328C /* HomeViewModelTests.swift in Sources */,
+				91DF499C2CE3CD34004C328C /* RecipeViewModelTests.swift in Sources */,
+				91B2486A2CE563CC002915AF /* RecipeServiceTests.swift in Sources */,
+				91B2486E2CE5668A002915AF /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
