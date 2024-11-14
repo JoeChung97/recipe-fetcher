@@ -107,14 +107,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		91B2484B2CE3CE50002915AF /* Helpers */ = {
+		91B2484B2CE3CE50002915AF /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				91B248502CE3EA85002915AF /* RecipeService.swift */,
 				91B2485C2CE4249A002915AF /* MockRecipeService.swift */,
 				91B2486B2CE56592002915AF /* MockURLProtocol.swift */,
 			);
-			path = Helpers;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		91B2484C2CE3CE6C002915AF /* Recipes View */ = {
@@ -192,7 +192,7 @@
 			children = (
 				91DF498A2CE3CD2E004C328C /* Recipe_FetcherApp.swift */,
 				91B2484A2CE3CE3B002915AF /* Views */,
-				91B2484B2CE3CE50002915AF /* Helpers */,
+				91B2484B2CE3CE50002915AF /* Network */,
 				91B2484D2CE3CE78002915AF /* Models */,
 				91DF498E2CE3CD34004C328C /* Assets.xcassets */,
 				91DF49902CE3CD34004C328C /* Preview Content */,
