@@ -32,7 +32,7 @@ struct SearchView: View {
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(isFocused ? Color.darkGreen : Color.backgroundSecondary, lineWidth: 2)
+                .stroke(isFocused ? Color.darkGreen : Color.black.opacity(0.5), lineWidth: 2)
         }
     }
 }

@@ -128,6 +128,30 @@ final class RecipeServiceTests: XCTestCase {
         }
     }
     
+    func testSeverelyMalformedResponse() async throws {
+        let responseString = "response"
+        let responseData = responseString.data(using: .utf8)
+        
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)
+            return (response!, responseData!)
+        }
+        
+        let result = await service.fetchRecipes()
+        
+        switch result {
+        case .success:
+            XCTFail("Expected failure but received success")
+        case .failure(let error):
+            guard let error = error as? RecipeServiceError else {
+                XCTFail("Expected a RecipeServiceError")
+                return
+            }
+            
+            XCTAssertEqual(error, RecipeServiceError.malformedJson)
+        }
+    }
+    
     func testNon200StatusCode() async throws {
         let recipeContainer = RecipeContainer(recipes: [])
         let mockData = try encoder.encode(recipeContainer)

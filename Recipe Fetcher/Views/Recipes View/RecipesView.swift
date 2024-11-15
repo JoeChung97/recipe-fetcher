@@ -34,9 +34,7 @@ struct RecipesView: View {
         }
         .background(Color.backgroundPrimary)
         .refreshable {
-            Task {
-                await viewModel.fetchRecipes()
-            }
+            await viewModel.fetchRecipes()
         }
         .overlay {
             if viewModel.isLoading {
@@ -50,6 +48,9 @@ struct RecipesView: View {
                   message: Text("We're sorry, it looks like something went wrong. Try swiping down to load the recipes again."))
         }
         .task {
+            // Loads the recipes a single time before the
+            // ScrollView appears. This won't be run again
+            // because the ScrollView will never get redrawn
             await viewModel.fetchRecipes()
         }
     }
@@ -95,7 +96,7 @@ struct RecipeCellView: View {
                     .resizable()
                     .indicator(.activity)
                     .transition(.fade(duration: 0.5))
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 115, height: 115)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
             }
