@@ -2,6 +2,7 @@
 1. Clone repository to local machine
 2. Make sure SPM fetches the SDWebImage package
 3. Build & run the app on your physical device or simulator
+4. Note: Recipes can be manually refreshed by pulling down on the scroll view
 
 ### Focus Areas: What specific areas of the project did you prioritize? Why did you choose to focus on these areas?
 I decided to heavily focus my efforts on the app's UI and testability. I believe that for consumer apps, the user is always the priority. Having an intuitive UI makes using the app easy and fun. As for testability, ensuring important aspects of the app can be effectively tested reduces potential bugs. Having as few bugs as possible is also very important to ensuring a high quality user experience.
