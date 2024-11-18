@@ -18,7 +18,7 @@ struct SearchView: View {
                 .frame(width: 14, height: 14)
                 .foregroundStyle(isFocused ? Color.black : Color.backgroundSecondary)
             
-            TextField("Enter your search...", text: $text)
+            TextField("Search our recipe database...", text: $text)
                 .tint(Color.darkGreen)
                 .submitLabel(.search)
                 .focused($isFocused)
@@ -33,6 +33,9 @@ struct SearchView: View {
         .overlay {
             RoundedRectangle(cornerRadius: 15)
                 .stroke(isFocused ? Color.darkGreen : Color.black.opacity(0.5), lineWidth: 2)
+        }
+        .onDisappear {
+            isFocused = false
         }
     }
 }
